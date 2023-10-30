@@ -1,0 +1,5 @@
+#Ambientes virtuales
+flask/venv
+
+#Cache de python
+__pycache__/

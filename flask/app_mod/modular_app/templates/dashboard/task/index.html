@@ -1,0 +1,26 @@
+{% extends "dashboard/master.html" %}
+
+{% block title %} Index task {% endblock %}
+
+{% block content %}
+ <a href="{{url_for('tasks.create')}}">Create task</a>
+ <table>
+   <thead>
+      <tr>
+         <th>Tarea</th>
+         <th>Edita</th>
+         <th>Borra</th>
+      </tr>
+   </thead>
+    {% for task in tasks %}
+      <tbody>
+       <tr>
+        <td>{{task.name}}</td>
+          <!--<td><a href="/tasks/update/{{loop.index0}}">Edita</a></td>-->
+         <td><a href="{{url_for('tasks.update', id=task.id)}}">Edita</a></td>
+         <td><a href="{{url_for('tasks.delete', id=task.id)}}">Borra</a></td> 
+      </tr>
+      </tbody>
+   {% endfor %}
+ </table>
+{% endblock %}
