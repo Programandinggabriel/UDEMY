@@ -6,6 +6,7 @@ Todas las declaraciones podran ser importadas, ya que seran expuestas con el mod
 from flask import Flask, render_template, request
 from modular_app.config import ProdConfig
 from flask_sqlalchemy import SQLAlchemy 
+from flask_migrate import Migrate
 
 #Inicializa
 app = Flask(__name__)
@@ -17,13 +18,18 @@ app.config.from_object(ProdConfig)
 #SQL ALCHEMY permite controlar el modelo entidad relacion desde flask.
 oDb = SQLAlchemy(app)
 
+#migrate permite migrar todas las clases creadas como modelo sqlalchemy a la bd, este se mantiene actualizado
+#segun el archivo que inicie las clases como (sqlaclhemy.model)
+migrate = Migrate(app=app, db=oDb)
+
 #Registra blueprints para task
 from modular_app.tasks.controllers import taskRoute
 app.register_blueprint(taskRoute)
 
-#create db
-with app.app_context():
-    oDb.create_all()
+#Crea todas las clases (modelos de slqalchemy) (Tablas) 
+#sobre el contexto de la app para poder hacer uso de ello
+#with app.app_context():
+#    oDb.create_all()
 
 @app.route('/')
 def prueba_jinja():
