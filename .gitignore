@@ -3,4 +3,4 @@ flask/venv
 
 #Cache de python
 #__pycache__/*
-**/__pycache__*
+**/__pycache__* #sin importar el num de car a la derch o izq encuenre este nombre
