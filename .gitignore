@@ -2,4 +2,5 @@
 flask/venv
 
 #Cache de python
-__pycache__/
+#__pycache__/*
+**/__pycache__*

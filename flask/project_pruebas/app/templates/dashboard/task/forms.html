@@ -1,0 +1,21 @@
+{{form.name.label}}
+{{form.name}}
+{% if form.name.errors %}
+   {% for error in form.name.errors %}
+      <script>
+         alert("{{error}}")
+      </script>
+   {% endfor %}
+{% endif %}
+
+<!--Valido errores
+{% if form.errors %}
+    {% for error in form.errors %}
+        <script>
+        alert("{{error}}")
+        </script>
+    {% endfor %}
+{% endif %}-->
+
+{{form.csrf_token}}
+<button type="submit">Send</button>
