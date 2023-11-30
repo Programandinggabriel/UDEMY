@@ -1,5 +1,11 @@
 {{form.name.label}}
 {{form.name}}
+<br>
+{% if id: %}
+   {{form.file.label}}
+   {{form.file}}
+{% endif %}
+
 {% if form.name.errors %}
    {% for error in form.name.errors %}
       <script>
@@ -18,4 +24,5 @@
 {% endif %}-->
 
 {{form.csrf_token}}
+<br>
 <button type="submit">Send</button>

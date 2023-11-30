@@ -43,6 +43,7 @@ def createTask(taskName:str):
 def updateTask(taskId:int, taskName:str):
     #obtengo tel obejto (registro) task que se actualizara
     updateTask = getTaskById(taskId)
+    
     #Cambio nombre
     #UPDATE flask_task SET name = x WHERE id = x
     updateTask.name = taskName

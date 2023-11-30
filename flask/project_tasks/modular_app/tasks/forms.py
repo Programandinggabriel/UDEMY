@@ -2,9 +2,10 @@
     directamente con backend"""
 
 from flask_wtf import FlaskForm
-from wtforms import StringField
+from wtforms import StringField, FileField
 from wtforms.validators import InputRequired
 
 #Clase de formulario para task
 class TaskForm(FlaskForm):
     name = StringField(label='Name', validators=[InputRequired()])
+    file = FileField(label='document',) #optional

@@ -1,7 +1,7 @@
-#Ambientes virtuales
-flask/venv
-
+#Entorno virtual
+flask/project_tasks/venv/*
+#Ruta carga archivos
+flask/project_tasks/modular_app/attachment/*
 #Cache de python
-#__pycache__/*
 #sin importar el num de car a la derch o izq encuenre este nombre
 **/__pycache__*
