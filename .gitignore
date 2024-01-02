@@ -2,6 +2,9 @@
 flask/project_tasks/venv/*
 #Ruta carga archivos
 flask/project_tasks/modular_app/attachment/*
+#Ruta migraciones
+flask/project_tasks/modular_app/migrations/*
+
 #Cache de python
 #sin importar el num de car a la derch o izq encuenre este nombre
 **/__pycache__*

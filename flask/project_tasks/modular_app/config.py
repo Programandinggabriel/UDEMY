@@ -19,7 +19,7 @@ class Config(object):
 #Configuro base de datos en produccion
 class ProdConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://postgres:postgres@localhost:5432/UDEMY"
+    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://postgres:postgres@localhost:5432/UDEMY_FLASK"
     
     #Clave que permite un unico acceso a el formulario, al senderizado por jinja valida la config de la app flask
     #para encontrar la var GLOBAL O DE ENTORNO (SECRET_KEY)

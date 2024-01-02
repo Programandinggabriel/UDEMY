@@ -1,11 +1,5 @@
 {{form.name.label}}
 {{form.name}}
-<br>
-{% if id: %}
-   {{form.file.label}}
-   {{form.file}}
-{% endif %}
-
 {% if form.name.errors %}
    {% for error in form.name.errors %}
       <script>
@@ -13,6 +7,24 @@
       </script>
    {% endfor %}
 {% endif %}
+<br>
+
+{% if id: %}
+   {{form.file.label}}
+   {{form.file}}
+{% endif %}
+<br>
+
+{{form.category.label}}
+{{form.category}}
+{% if form.category.errors %}
+   {% for error in form.category.errors %}
+      <script>
+         alert("{{error}}")
+      </script>
+   {% endfor %}
+{% endif %}
+<br>
 
 <!--Valido errores
 {% if form.errors %}
@@ -24,5 +36,4 @@
 {% endif %}-->
 
 {{form.csrf_token}}
-<br>
 <button type="submit">Send</button>

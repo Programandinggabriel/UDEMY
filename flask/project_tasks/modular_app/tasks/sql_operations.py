@@ -29,10 +29,10 @@ def getAllTask():
     return tasks
 
 #Crear tarea
-def createTask(taskName:str):
+def createTask(taskName:str, categoryType:int):
     #asigno argumentos a la clase iniciada del modelo (tabla) task
     #INSERT INTO flask_task (id, name) VALUES (x, x)
-    newTask = models.Task(name=taskName)
+    newTask = models.Task(name=taskName, category_id=categoryType)
     oDb.session.add(newTask)
     oDb.session.commit()
     oDb.session.refresh(newTask)
@@ -40,13 +40,16 @@ def createTask(taskName:str):
     return newTask
 
 #Actualizar tarea
-def updateTask(taskId:int, taskName:str):
-    #obtengo tel obejto (registro) task que se actualizara
+def updateTask(taskId:int, taskName:str, documentId:int=None, categoryID:int=0):
+    #obtengo el objeto (registro) task que se actualizara
     updateTask = getTaskById(taskId)
     
     #Cambio nombre
     #UPDATE flask_task SET name = x WHERE id = x
     updateTask.name = taskName
+    updateTask.categoy_id = categoryID
+    if documentId is not None:
+        updateTask.document_id = documentId
 
     oDb.session.add(updateTask)
     oDb.session.commit()
@@ -65,3 +68,25 @@ def deleteTask(taskId:int):
 #SELECT * FROM flask_task LIMIT X OFFSET Y
 def pagination(page:int, count:int):
     return models.Task.query.paginate(page=page, per_page=count)
+
+#TAGS
+#Asignar tag a una o muchas tareas
+def addTagTask(taskId:int, tagId:int):
+    task = getTaskById(taskId=taskId)
+    tag = models.Tag.query.get(ident=tagId)
+    
+    #Agrega a tabla pivote
+    task.tags.append(tag)
+
+    oDb.session.add(task)
+    oDb.session.commit()
+    oDb.session.refresh(task)
+
+def removeTagTask(taskId:int, tagId:int):
+    task = getTaskById(taskId=taskId)
+    tag = models.Tag.query.get(ident=tagId)
+
+    task.tags.remove(tag)
+    
+    oDb.session.commit()
+    oDb.session.refresh(task)

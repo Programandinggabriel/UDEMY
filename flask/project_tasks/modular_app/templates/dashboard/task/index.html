@@ -8,6 +8,7 @@
    <thead>
       <tr>
          <th>Tarea</th>
+         <th>Categoria</th>
          <th>Edita</th>
          <th>Borra</th>
       </tr>
@@ -16,9 +17,9 @@
       <tbody>
        <tr>
         <td>{{task.name}}</td>
-          <!--<td><a href="/tasks/update/{{loop.index0}}">Edita</a></td>-->
-         <td><a href="{{url_for('tasks.update', id=task.id)}}">Edita</a></td>
-         <td><a href="{{url_for('tasks.delete', id=task.id)}}">Borra</a></td> 
+        <td>{{task.category.name}}</td>
+        <td><a href="{{url_for('tasks.update', id=task.id)}}">Edita</a></td>
+        <td><a href="{{url_for('tasks.delete', id=task.id)}}">Borra</a></td> 
       </tr>
       </tbody>
    {% endfor %}
