@@ -3,7 +3,7 @@ import os
 
 #CONFIG GLOBAL DE LA APP
 #Archivos que aceptara la APP FLASK
-ALLOWED_EXTENSIONS_FILES = {'pdf', 'jpg', 'jpeg', 'gif', 'png'}
+ALLOWED_EXTENSIONS_FILES = {'pdf', 'jpg', 'jpeg', 'gif', 'png', 'xlsx'}
 
 #Función que valida entrada de archivos permititidos
 def validate_ext_file(filename:str):

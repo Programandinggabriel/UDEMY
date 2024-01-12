@@ -3,10 +3,11 @@ Inicializa la app como un modulo.
 Todas las declaraciones podran ser importadas, ya que seran expuestas con el modulo (modular_app)
 """
 
-from flask import Flask, render_template, request
+from flask import Flask
 from modular_app.config import ProdConfig
 from flask_sqlalchemy import SQLAlchemy 
 from flask_migrate import Migrate
+from flask_login import LoginManager
 
 #Inicializa
 app = Flask(__name__)
@@ -22,16 +23,18 @@ oDb = SQLAlchemy(app)
 #segun el archivo que inicie las clases como (sqlaclhemy.model)
 migrate = Migrate(app=app, db=oDb)
 
+#Login manager para tratar la autenticacion en la app
+loginMan = LoginManager(app=app)
+
+#Registra blueprints para auth
+from modular_app.auth.controllers import authRoute
 #Registra blueprints para task
 from modular_app.tasks.controllers import taskRoute
+
 app.register_blueprint(taskRoute)
+app.register_blueprint(authRoute)
 
 #Crea todas las clases (modelos de slqalchemy) (Tablas) 
 #sobre el contexto de la app para poder hacer uso de ello
 #with app.app_context():
 #    oDb.create_all()
-
-@app.route('/')
-def prueba_jinja():
-    name = request.args.get(key='name', default='', type=str)
-    return render_template(template_name_or_list='index.html', name=name)

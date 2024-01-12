@@ -1,0 +1,16 @@
+<div>
+    <!-- 
+        get_flashed_messages(with_categories=true)
+        get_flashed_messages(category_filter=[''])
+    -->
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <script type="text/javascript">
+                    alert('{{message}}')
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>

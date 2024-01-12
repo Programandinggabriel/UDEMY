@@ -3,25 +3,33 @@
 {% block title %} Index task {% endblock %}
 
 {% block content %}
- <a href="{{url_for('tasks.create')}}">Create task</a>
- <table>
-   <thead>
-      <tr>
-         <th>Tarea</th>
-         <th>Categoria</th>
-         <th>Edita</th>
-         <th>Borra</th>
-      </tr>
-   </thead>
-    {% for task in tasks %}
-      <tbody>
-       <tr>
-        <td>{{task.name}}</td>
-        <td>{{task.category.name}}</td>
-        <td><a href="{{url_for('tasks.update', id=task.id)}}">Edita</a></td>
-        <td><a href="{{url_for('tasks.delete', id=task.id)}}">Borra</a></td> 
-      </tr>
-      </tbody>
-   {% endfor %}
- </table>
+   <button id="btn_logout" type="button">Cerrar sesion</button>
+   <br>
+   <br>
+
+   <a href="{{url_for('tasks.create')}}">Create task</a>
+   <table>
+      <thead>
+         <tr>
+            <th>Tarea</th>
+            <th>Categoria</th>
+            <th>Edita</th>
+            <th>Borra</th>
+         </tr>
+      </thead>
+      {% for task in tasks %}
+         <tbody>
+         <tr>
+         <td>{{task.name}}</td>
+         <td>{{task.category.name}}</td>
+         <td><a href="{{url_for('tasks.update', id=task.id)}}">Edita</a></td>
+         <td><a href="{{url_for('tasks.delete', id=task.id)}}">Borra</a></td> 
+         </tr>
+         </tbody>
+      {% endfor %}
+   </table>
+
+   {% block scripts %}
+      <script src="/static/js/dashboard_task_index.js" type="text/javascript"></script>
+   {% endblock %}
 {% endblock %}

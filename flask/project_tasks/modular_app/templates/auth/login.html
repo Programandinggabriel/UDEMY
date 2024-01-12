@@ -1,0 +1,18 @@
+{% extends "master.html" %}
+
+{% block title %} Login user {% endblock %}
+
+{% block content %}
+    {% include 'auth/utils/messages.html' %}
+   <form action="" method="post">
+      {{ frmLogin.userName.label }}
+      {{ frmLogin.userName }}
+
+      {{ frmLogin.password.label }}
+      {{ frmLogin.password }}
+    
+      <button type="submit">Envia</button>
+      
+      {{ frmLogin.csrf_token }}
+   </form>
+{% endblock %}

@@ -1,8 +1,10 @@
 {% extends "dashboard/master.html" %}
 
-{% block title %} Create {% endblock %}
+{% block title %} Update {% endblock %}
 
 {% block content %}
+   {% include 'dashboard/utils/messages.html' %}
+
    <form action="" method="post" enctype="multipart/form-data">
       {% include 'dashboard/task/forms.html'%}
    </form>

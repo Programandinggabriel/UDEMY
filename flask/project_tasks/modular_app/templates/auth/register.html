@@ -1,0 +1,21 @@
+{% extends "master.html" %}
+
+{% block title %} Register user {% endblock %}
+
+{% block content %}
+    {% include 'auth/utils/messages.html' %}
+   <form action="" method="post">
+      {{ frmRegister.userName.label }}
+      {{ frmRegister.userName }}
+
+      {{ frmRegister.password.label }}
+      {{ frmRegister.password }}
+
+      {{ frmRegister.confirmPswd.label }}
+      {{ frmRegister.confirmPswd }}
+    
+      <button type="submit">Envia</button>
+      
+      {{ frmRegister.csrf_token }}
+   </form>
+{% endblock %}
