@@ -26,6 +26,6 @@ def createDocument(filename:str):
 def deleteDocument(id:int):
     delDocument = getDocumentById(id)
     oDb.session.delete(delDocument)
-    oDb.session.commit()
     
+    oDb.session.commit()
     return True

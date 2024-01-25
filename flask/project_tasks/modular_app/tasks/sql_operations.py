@@ -47,7 +47,8 @@ def updateTask(taskId:int, taskName:str, documentId:int=None, categoryID:int=0):
     #Cambio nombre
     #UPDATE flask_task SET name = x WHERE id = x
     updateTask.name = taskName
-    updateTask.categoy_id = categoryID
+    updateTask.category_id = categoryID
+
     if documentId is not None:
         updateTask.document_id = documentId
 
@@ -68,6 +69,7 @@ def deleteTask(taskId:int):
 #SELECT * FROM flask_task LIMIT X OFFSET Y
 def pagination(page:int, count:int):
     return models.Task.query.paginate(page=page, per_page=count)
+
 
 #TAGS
 #Asignar tag a una o muchas tareas

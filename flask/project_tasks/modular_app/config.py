@@ -1,6 +1,8 @@
 #En este archivo se encuentra la configuracion de la app creda con flask.
 import os
 
+from datetime import timedelta
+
 #CONFIG GLOBAL DE LA APP
 #Archivos que aceptara la APP FLASK
 ALLOWED_EXTENSIONS_FILES = {'pdf', 'jpg', 'jpeg', 'gif', 'png', 'xlsx'}
@@ -14,6 +16,7 @@ def validate_ext_file(filename:str):
 #(las prop de esta se tendran que heredar a cualquier ambiente)
 class Config(object):
     UPLOAD_FOLDER = os.path.realpath(path='.') + '/modular_app/attachment' #ruta relativa de la app   
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=24)
     pass
 
 #Configuro base de datos en produccion
