@@ -1,7 +1,7 @@
 <form action="{{url_for('tasks.addTag', id=id)}}" method="post">
-    {{frmTag.tag.label}}
-    {{frmTag.tag}}
+    {{frmTag.tag.label(class="form-label")}}
+    {{frmTag.tag(class="form-select-sm")}}
 
     {{frmTag.csrf_token}}
-    <button type="submit">Asignar tag</button>
+    <button class="btn btn-success btn-sm" type="submit">Asignar tag</button>
 </form>

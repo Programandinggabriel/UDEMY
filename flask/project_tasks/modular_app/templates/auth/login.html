@@ -4,15 +4,23 @@
 
 {% block content %}
     {% include 'auth/utils/messages.html' %}
-   <form action="" method="post">
-      {{ frmLogin.userName.label }}
-      {{ frmLogin.userName }}
+      <div class="container mt-5" style="max-width: 400px;">
+         <div class="card">
+            <div class="card-body">
+               <form action="" method="post">
+                  {{ frmLogin.userName.label(class="form-label")}}
+                  {{ frmLogin.userName(class="form-control")}}
 
-      {{ frmLogin.password.label }}
-      {{ frmLogin.password }}
-    
-      <button type="submit">Envia</button>
-      
-      {{ frmLogin.csrf_token }}
-   </form>
+                  {{ frmLogin.password.label(class="form-label")}}
+                  {{ frmLogin.password(class="form-control")}}
+                  
+                  <div class="d-grid gap-2 my-3">
+                     <button class="btn btn-success" type="submit">Envia</button>
+                  </div>
+
+                  {{ frmLogin.csrf_token }}
+               </form>
+            </div>
+         </div>
+      </div>
 {% endblock %}

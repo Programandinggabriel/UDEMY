@@ -16,7 +16,7 @@ def validate_ext_file(filename:str):
 #(las prop de esta se tendran que heredar a cualquier ambiente)
 class Config(object):
     UPLOAD_FOLDER = os.path.realpath(path='.') + '/modular_app/attachment' #ruta relativa de la app   
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=24)
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=30)
     pass
 
 #Configuro base de datos en produccion

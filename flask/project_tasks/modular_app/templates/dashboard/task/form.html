@@ -1,0 +1,38 @@
+<div class="row">
+   <div class="col">
+      {{form.name.label(class="form-label")}}
+      {{form.name(class="form-control")}}
+      {% if form.name.errors %}
+         {% for error in form.name.errors %}
+            <p>{{error}}</p>
+         {% endfor %}
+      {% endif %}
+   </div>
+   <div class="col">
+      {{form.category.label(class="form-label")}}
+      {{form.category(class="form-select")}}
+      {% if form.category.errors %}
+         {% for error in form.category.errors %}
+            <p>{{error}}</p>
+         {% endfor %}
+      {% endif %}
+   </div>
+   {% if id: %}
+      <div class="col">
+         {{form.file.label(class="form-label")}}
+         {{form.file(class="form-control")}}
+      </div>
+   {% endif %}
+</div>
+
+<!--Valido errores
+{% if form.errors %}
+    {% for error in form.errors %}
+        <script>
+        alert("{{error}}")
+        </script>
+    {% endfor %}
+{% endif %}-->
+
+{{form.csrf_token}}
+<button class="btn btn-success btn-md my-2" type="submit">Send</button>

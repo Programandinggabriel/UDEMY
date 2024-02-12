@@ -1,4 +1,4 @@
-from flask import g, Blueprint, flash, redirect, render_template, request, url_for, jsonify
+from flask import g, Blueprint, flash, redirect, render_template, request, url_for, jsonify, session
 
 from flask_login import current_user, login_user, logout_user
 from flask_jwt_extended import create_access_token
@@ -71,12 +71,16 @@ def login():
             if user:
                 if user.validatePasword(password):
                     login_user(user=user)
+                    session['user'] = user.serialize
+
                     return redirect(location=url_for('tasks.index'))
                 else:
                     flash(message="Usuario o contraseña incorrectos")
+                    
                     return render_template('auth/login.html', frmLogin=frmLogin)
             else:
                 flash(message="Usuario o contraseña incorrectos")
+                
                 return render_template('auth/login.html', frmLogin=frmLogin)
                 
 @authRoute.route('/logout', methods=["POST"])

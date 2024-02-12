@@ -6,16 +6,26 @@
    {% include 'dashboard/utils/messages.html' %}
 
    <form action="" method="post" enctype="multipart/form-data">
-      {% include 'dashboard/task/forms.html'%}
+      {% include 'dashboard/task/form.html'%}
    </form>
 
-   <h3>Documento: </h3>
    {% if task.document: %}
-      {% with document=task.document%}
-         {% include 'dashboard/documents/detail.html' %}
-      {% endwith %}
+      <div class="row">
+         <div class="col col-sm-2">
+            <h4>Documento:</h4>
+         </div>
+         <div class="col">
+            {% with document=task.document%}
+               {% include 'dashboard/documents/detail.html' %}
+            {% endwith %}
+         </div>
+      </div>
    {% endif %}
 
-   {%include 'dashboard/task/tags/index.html'%}
-   {%include 'dashboard/task/tags/assign.html'%}
+   <div class="mt-2">
+      <h4>Etiquetas</h4>
+      {% include 'dashboard/task/tags/index.html' %}
+   </div>
+
+   {% include 'dashboard/task/tags/assign.html' %}
 {% endblock %}

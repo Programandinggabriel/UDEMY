@@ -30,3 +30,7 @@ class User(oDb.Model):
     @property
     def is_anonymus(self):
         return False
+    @property
+    def serialize(self):
+        return {"id":self.id, 
+                "username": self.userName}

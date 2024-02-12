@@ -4,18 +4,24 @@
 
 {% block content %}
     {% include 'auth/utils/messages.html' %}
-   <form action="" method="post">
-      {{ frmRegister.userName.label }}
-      {{ frmRegister.userName }}
+   <div class="container">
+      <div class="card">
+         <div class="card-body">
+            <form action="" method="post">
+               {{ frmRegister.userName.label(class="form-label") }}
+               {{ frmRegister.userName(class="form-control") }}
 
-      {{ frmRegister.password.label }}
-      {{ frmRegister.password }}
+               {{ frmRegister.password.label(class="form-label") }}
+               {{ frmRegister.password(class="form-control") }}
 
-      {{ frmRegister.confirmPswd.label }}
-      {{ frmRegister.confirmPswd }}
-    
-      <button type="submit">Envia</button>
-      
-      {{ frmRegister.csrf_token }}
-   </form>
+               {{ frmRegister.confirmPswd.label(class="form-label") }}
+               {{ frmRegister.confirmPswd(class="form-control") }}
+
+               <button  class="btn btn-success" type="submit">Envia</button>
+
+               {{ frmRegister.csrf_token }}
+            </form>
+         </div>
+      </div>
+   </div>
 {% endblock %}

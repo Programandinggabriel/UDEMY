@@ -35,8 +35,7 @@ class TaskAPI(Resource):
                     tagsList.append({"id":tag.id, "name":tag.name})
 
                 response = {"id":task.id,
-                            "name": task.name, 
-                            "category_id": task.category_id,
+                            "name": task.name,
                             "category": task.category.name,
                             "tags": tagsList,
                             "document_id":task.document_id}
@@ -73,7 +72,6 @@ class TaskAPI(Resource):
         return jsonify({"id":newTask.id,
                         "name": newTask.name, 
                         "category": newTask.category.name,
-                        "category_id": newTask.category_id,
                         "document_id":newTask.document_id})
 
     def put(self, id:int=None):

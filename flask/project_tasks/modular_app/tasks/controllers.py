@@ -1,6 +1,6 @@
 import os
 
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 
 from flask_login import login_required
 
@@ -21,8 +21,12 @@ def before():
 
 @taskRoute.route('/')
 def index():
-    aTasks = sql_operations.getAllTask()
-    return render_template('dashboard/task/index.html', tasks = aTasks)
+    #tasks = sql_operations.getAllTask()
+    page = request.args.get(key='page', default=1, type=int)        
+    tasks = sql_operations.pagination(page=page, count=10)
+    print(session)
+
+    return render_template('dashboard/task/index.html', tasks = tasks)
 
 @taskRoute.route('/create', methods=['POST', 'GET'])
 def create():
@@ -80,10 +84,12 @@ def delete(id:int):
     oTask = sql_operations.getTaskById(id)
     
     sql_operations.deleteTask(taskId=oTask.id)
-    doc_sql_operations.deleteDocument(oTask.document_id)
+
+    if oTask.document_id is not None:
+        doc_sql_operations.deleteDocument(oTask.document_id)
     
-    filename = oTask.document.name
-    os.remove(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        filename = oTask.document.name
+        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
     return redirect(url_for('tasks.index'))
 

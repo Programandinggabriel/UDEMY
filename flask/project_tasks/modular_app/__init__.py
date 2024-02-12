@@ -24,7 +24,7 @@ from flask_restful import Api
 #Liberia para autenticar el API
 from flask_jwt_extended import JWTManager
 #Inicializa
-app = Flask(__name__)
+app = Flask(__name__, static_folder='assets')
 
 #configura
 app.config.from_object(ProdConfig)

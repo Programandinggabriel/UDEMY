@@ -4,15 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} Titulo de master {% endblock %}</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap/css/bootstrap.min.css')}}"></link>
 </head>
 <body>
-    <div>
-        {% block content %}
-        {% endblock %}
-    </div>
+  <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="{{url_for('tasks.index')}}">Dashboard</a>
 
-    {% block footer %}
-        <p>Dashboard task</p>
-    {% endblock %}
+          <div class="collapse navbar-collapse" id="nav">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tasks
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{{url_for('tasks.create')}}">Create</a></li>
+                </ul>
+              </li>
+            </ul>
+          
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown dropstart">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                  <img src="data:image/jpeg;base64,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" 
+                  class="rounded-circle border border-info" width="40" height="40">
+                </a>
+
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="">Profile</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="">Logout</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+      </div>
+  </nav>
+
+  <div class="container">
+      <div class="card">
+          <div class="card-body">
+              {% block content %}
+              {% endblock %}
+          </div>
+      </div>
+  </div>
+
+  {% block footer %}
+      <p>Dashboard task</p>
+  {% endblock %}
 </body>
+<script src="{{url_for('static', filename='bootstrap/js/popper.min.js')}}"></script>
+<script src="{{url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
 </html>

@@ -1,0 +1,39 @@
+<!--Funcion, en base a una data paginada por sqlalchemy, se realizan ciertas validaciones-->
+{% macro m_pagination(dataPag, url='tasks.index') %}
+<nav> 
+    <h6>Paginas:</h6>
+    <ul class="pagination justify-content-center">
+        {% if dataPag.has_prev %}
+        <li class="page-item">
+            <a class="page-link" href="{{url_for(url, page=dataPag.prev_num)}}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% endif %}
+
+        {% for page in dataPag.iter_pages() %}
+          {% if page.__index__() == dataPag.page.__index__() %}
+            <li class="page-item active">
+              <a class="page-link" href="{{url_for(url, page=page.__index__())}}" aria-label="Previous">
+              {{page.__index__()}}
+              </a>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a class="page-link" href="{{url_for(url, page=page.__index__())}}" aria-label="Previous">
+              {{page.__index__()}}
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        
+        {% if dataPag.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="{{url_for(url, page=dataPag.next_num)}}" aria-label="Previous">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endmacro %}

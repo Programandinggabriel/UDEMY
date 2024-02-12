@@ -1,12 +1,13 @@
 <ul>
-    {%for tag in task.tags%}
-        <li>{{tag.name}}</li>
-        <form action="{{url_for('tasks.deleteTag', id=id)}}" method="post">
-            {{frmTagRem.tag(value=tag.id)}}
+    {% for tag in task.tags %}
+        <form action="{{url_for('tasks.deleteTag', id=id)}}" method="post" class="d-inline">
             {{frmTagRem.csrf_token}}
 
-            <button type="submit">Eliminar</button>
+            {{frmTagRem.tag(value=tag.id)}}
+            <li>{{tag.name}}</li>
+            <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
         </form>
     {%endfor%}
 </ul>
+
 

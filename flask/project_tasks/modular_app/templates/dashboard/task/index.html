@@ -1,14 +1,11 @@
 {% extends "dashboard/master.html" %}
+{% from "macro/pagination.html" import m_pagination %}
 
 {% block title %} Index task {% endblock %}
 
 {% block content %}
-   <button id="btn_logout" type="button">Cerrar sesion</button>
-   <br>
-   <br>
-
-   <a href="{{url_for('tasks.create')}}">Create task</a>
-   <table>
+   <a class="btn btn-success btn-sm" href="{{url_for('tasks.create')}}">Create task</a>
+   <table class="table">
       <thead>
          <tr>
             <th>Tarea</th>
@@ -17,19 +14,17 @@
             <th>Borra</th>
          </tr>
       </thead>
-      {% for task in tasks %}
+      {% for task in tasks.items %}
          <tbody>
          <tr>
          <td>{{task.name}}</td>
          <td>{{task.category.name}}</td>
-         <td><a href="{{url_for('tasks.update', id=task.id)}}">Edita</a></td>
-         <td><a href="{{url_for('tasks.delete', id=task.id)}}">Borra</a></td> 
+         <td><a class="btn btn-secondary btn-sm" href="{{url_for('tasks.update', id=task.id)}}">Edita</a></td>
+         <td><a class="btn btn-danger btn-sm" href="{{url_for('tasks.delete', id=task.id)}}">Borra</a></td> 
          </tr>
          </tbody>
       {% endfor %}
    </table>
-
-   {% block scripts %}
-      <script src="/static/js/dashboard_task_index.js" type="text/javascript"></script>
-   {% endblock %}
+   
+   {{m_pagination(dataPag=tasks)}}
 {% endblock %}
