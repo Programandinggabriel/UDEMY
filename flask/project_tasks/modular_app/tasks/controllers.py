@@ -24,7 +24,6 @@ def index():
     #tasks = sql_operations.getAllTask()
     page = request.args.get(key='page', default=1, type=int)        
     tasks = sql_operations.pagination(page=page, count=10)
-    print(session)
 
     return render_template('dashboard/task/index.html', tasks = tasks)
 
