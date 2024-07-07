@@ -32,6 +32,9 @@ def register():
     elif request.method == 'POST':
         if frmRegister.validate_on_submit():
             username = frmRegister.userName.data
+            firtsName = frmRegister.firtsName.data
+            secondName = frmRegister.secondName.data
+            email = frmRegister.email.data
             password = frmRegister.password.data
 
             user_exist = sql_operations.getUserByUserName(username=username)
@@ -42,7 +45,8 @@ def register():
                 flash('El usuario ya se encuentra registrado, intente con otro')
                 return render_template('auth/login.html', frmLogin=frmLogin)
             else:
-                createUser = sql_operations.createUser(username=username, password=password)
+                createUser = sql_operations.createUser(username=username, firtsname=firtsName,
+                                                       secondname=secondName, email=email, password=password)
                 flash(f'El usuario {createUser.userName} fue creado con exito')
 
         #Errores en formulario
@@ -83,7 +87,7 @@ def login():
                 
                 return render_template('auth/login.html', frmLogin=frmLogin)
                 
-@authRoute.route('/logout', methods=["POST"])
+@authRoute.route('/logout', methods=["GET"])
 def logout():
     logout_user()
     return url_for('auth.login') 

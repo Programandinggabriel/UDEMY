@@ -1,6 +1,4 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-
-from sqlalchemy.orm import relationship 
  
 from modular_app import oDb
 
@@ -14,11 +12,6 @@ class User(oDb.Model):
     
     firstName = oDb.Column(oDb.String(100), nullable=False)
     secondName = oDb.Column(oDb.String(100), nullable=False)
-
-    avatar_id = oDb.Column(oDb.Integer, oDb.ForeignKey(''), nullable=False)
-
-    #Relaciones
-    avatar = relationship()
 
     def __init__(self, userName:str, password:str):
         self.userName = userName
